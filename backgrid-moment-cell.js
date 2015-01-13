@@ -9,7 +9,7 @@
 
   if (typeof define === 'function' && define.amd) {
     // AMD
-    define(["underscore", "backgrid", "moment"], factory);
+    define(["underscore", "backgrid", "moment-timezone"], factory);
   } else if (typeof exports === 'object') {
     // CommonJS
     module.exports = factory(require("underscore"), require("backgrid"),
@@ -79,6 +79,7 @@
       modelInUTC: true,
       modelLang: moment.lang(),
       modelFormat: moment.defaultFormat,
+      displayTimeZone: false,
       displayInUnixOffset: false,
       displayInUnixTimestamp: false,
       displayInUTC: true,
@@ -109,6 +110,7 @@
       if (this.displayLang) m.lang(this.displayLang);
 
       if (this.displayInUTC) m.utc(); else m.local();
+      if (this.displayTimeZone) m.tz(this.displayTimeZone);
 
       return m.format(this.displayFormat);
     },
